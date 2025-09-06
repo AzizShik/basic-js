@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require('../lib');
 
 const MODERN_ACTIVITY = 15;
 const HALF_LIFE_PERIOD = 5730;
@@ -18,6 +18,8 @@ const HALF_LIFE_PERIOD = 5730;
  *
  */
 function dateSample(sampleActivity) {
+
+
 	const age = Math.ceil(
 		Math.log(MODERN_ACTIVITY / +sampleActivity) /
 			(Math.log(2).toFixed(3) / HALF_LIFE_PERIOD)
@@ -26,7 +28,8 @@ function dateSample(sampleActivity) {
 		typeof sampleActivity !== 'string' ||
 		isNaN(age) ||
 		age < 0 ||
-		age == 'Infinity'
+		age == 'Infinity' ||
+		!sampleActivity
 	)
 		return false;
 	return age;
