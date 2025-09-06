@@ -1,4 +1,4 @@
-const { NotImplementedError } = require('../extensions/index.js');
+const { NotImplementedError } = require('../lib');
 
 /**
  * Implement class VigenereCipheringMachine that allows us to create
@@ -26,7 +26,7 @@ class VigenereCipheringMachine {
 	}
 	encrypt(message, key) {
 		if (!message || !key) {
-			throw Error('Incorrect arguments!');
+			throw new Error('Incorrect arguments!');
 		} else {
 			const msg = message.toUpperCase();
 			const keyword = key
@@ -80,6 +80,12 @@ class VigenereCipheringMachine {
 	}
 }
 
+const directMachine = new VigenereCipheringMachine();
+const reverseMachine = new VigenereCipheringMachine(false);
+
+
 module.exports = {
 	VigenereCipheringMachine,
+	directMachine,
+	reverseMachine
 };
